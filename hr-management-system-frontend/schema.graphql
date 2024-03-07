@@ -1,0 +1,620 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Attendance {
+  attendanceId: ID!
+  createdAt: AWSDateTime!
+  date: AWSDate!
+  empId: ID!
+  id: ID!
+  status: String!
+  updatedAt: AWSDateTime!
+}
+
+type Document {
+  createdAt: AWSDateTime!
+  description: String
+  docId: ID!
+  empId: ID!
+  id: ID!
+  title: String!
+  updatedAt: AWSDateTime!
+  url: String!
+}
+
+type Employee {
+  contact: String!
+  createdAt: AWSDateTime!
+  empId: ID!
+  id: ID!
+  name: String!
+  position: String!
+  updatedAt: AWSDateTime!
+}
+
+type Leave {
+  createdAt: AWSDateTime!
+  empId: ID!
+  endDate: AWSDateTime!
+  id: ID!
+  leaveId: ID!
+  reason: String!
+  startDate: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ModelAttendanceConnection {
+  items: [Attendance]!
+  nextToken: String
+}
+
+type ModelDocumentConnection {
+  items: [Document]!
+  nextToken: String
+}
+
+type ModelEmployeeConnection {
+  items: [Employee]!
+  nextToken: String
+}
+
+type ModelLeaveConnection {
+  items: [Leave]!
+  nextToken: String
+}
+
+type ModelPayrollConnection {
+  items: [Payroll]!
+  nextToken: String
+}
+
+type ModelPerformanceReviewConnection {
+  items: [PerformanceReview]!
+  nextToken: String
+}
+
+type Mutation {
+  createAttendance(condition: ModelAttendanceConditionInput, input: CreateAttendanceInput!): Attendance
+  createDocument(condition: ModelDocumentConditionInput, input: CreateDocumentInput!): Document
+  createEmployee(condition: ModelEmployeeConditionInput, input: CreateEmployeeInput!): Employee
+  createLeave(condition: ModelLeaveConditionInput, input: CreateLeaveInput!): Leave
+  createPayroll(condition: ModelPayrollConditionInput, input: CreatePayrollInput!): Payroll
+  createPerformanceReview(condition: ModelPerformanceReviewConditionInput, input: CreatePerformanceReviewInput!): PerformanceReview
+  deleteAttendance(condition: ModelAttendanceConditionInput, input: DeleteAttendanceInput!): Attendance
+  deleteDocument(condition: ModelDocumentConditionInput, input: DeleteDocumentInput!): Document
+  deleteEmployee(condition: ModelEmployeeConditionInput, input: DeleteEmployeeInput!): Employee
+  deleteLeave(condition: ModelLeaveConditionInput, input: DeleteLeaveInput!): Leave
+  deletePayroll(condition: ModelPayrollConditionInput, input: DeletePayrollInput!): Payroll
+  deletePerformanceReview(condition: ModelPerformanceReviewConditionInput, input: DeletePerformanceReviewInput!): PerformanceReview
+  updateAttendance(condition: ModelAttendanceConditionInput, input: UpdateAttendanceInput!): Attendance
+  updateDocument(condition: ModelDocumentConditionInput, input: UpdateDocumentInput!): Document
+  updateEmployee(condition: ModelEmployeeConditionInput, input: UpdateEmployeeInput!): Employee
+  updateLeave(condition: ModelLeaveConditionInput, input: UpdateLeaveInput!): Leave
+  updatePayroll(condition: ModelPayrollConditionInput, input: UpdatePayrollInput!): Payroll
+  updatePerformanceReview(condition: ModelPerformanceReviewConditionInput, input: UpdatePerformanceReviewInput!): PerformanceReview
+}
+
+type Payroll {
+  createdAt: AWSDateTime!
+  empId: ID!
+  id: ID!
+  month: Int!
+  payrollId: ID!
+  salary: Float!
+  updatedAt: AWSDateTime!
+  year: Int!
+}
+
+type PerformanceReview {
+  comments: String
+  createdAt: AWSDateTime!
+  empId: ID!
+  id: ID!
+  rating: Float!
+  reviewId: ID!
+  updatedAt: AWSDateTime!
+  year: Int!
+}
+
+type Query {
+  getAttendance(id: ID!): Attendance
+  getDocument(id: ID!): Document
+  getEmployee(id: ID!): Employee
+  getLeave(id: ID!): Leave
+  getPayroll(id: ID!): Payroll
+  getPerformanceReview(id: ID!): PerformanceReview
+  listAttendances(filter: ModelAttendanceFilterInput, limit: Int, nextToken: String): ModelAttendanceConnection
+  listDocuments(filter: ModelDocumentFilterInput, limit: Int, nextToken: String): ModelDocumentConnection
+  listEmployees(filter: ModelEmployeeFilterInput, limit: Int, nextToken: String): ModelEmployeeConnection
+  listLeaves(filter: ModelLeaveFilterInput, limit: Int, nextToken: String): ModelLeaveConnection
+  listPayrolls(filter: ModelPayrollFilterInput, limit: Int, nextToken: String): ModelPayrollConnection
+  listPerformanceReviews(filter: ModelPerformanceReviewFilterInput, limit: Int, nextToken: String): ModelPerformanceReviewConnection
+}
+
+type Subscription {
+  onCreateAttendance(filter: ModelSubscriptionAttendanceFilterInput): Attendance @aws_subscribe(mutations : ["createAttendance"])
+  onCreateDocument(filter: ModelSubscriptionDocumentFilterInput): Document @aws_subscribe(mutations : ["createDocument"])
+  onCreateEmployee(filter: ModelSubscriptionEmployeeFilterInput): Employee @aws_subscribe(mutations : ["createEmployee"])
+  onCreateLeave(filter: ModelSubscriptionLeaveFilterInput): Leave @aws_subscribe(mutations : ["createLeave"])
+  onCreatePayroll(filter: ModelSubscriptionPayrollFilterInput): Payroll @aws_subscribe(mutations : ["createPayroll"])
+  onCreatePerformanceReview(filter: ModelSubscriptionPerformanceReviewFilterInput): PerformanceReview @aws_subscribe(mutations : ["createPerformanceReview"])
+  onDeleteAttendance(filter: ModelSubscriptionAttendanceFilterInput): Attendance @aws_subscribe(mutations : ["deleteAttendance"])
+  onDeleteDocument(filter: ModelSubscriptionDocumentFilterInput): Document @aws_subscribe(mutations : ["deleteDocument"])
+  onDeleteEmployee(filter: ModelSubscriptionEmployeeFilterInput): Employee @aws_subscribe(mutations : ["deleteEmployee"])
+  onDeleteLeave(filter: ModelSubscriptionLeaveFilterInput): Leave @aws_subscribe(mutations : ["deleteLeave"])
+  onDeletePayroll(filter: ModelSubscriptionPayrollFilterInput): Payroll @aws_subscribe(mutations : ["deletePayroll"])
+  onDeletePerformanceReview(filter: ModelSubscriptionPerformanceReviewFilterInput): PerformanceReview @aws_subscribe(mutations : ["deletePerformanceReview"])
+  onUpdateAttendance(filter: ModelSubscriptionAttendanceFilterInput): Attendance @aws_subscribe(mutations : ["updateAttendance"])
+  onUpdateDocument(filter: ModelSubscriptionDocumentFilterInput): Document @aws_subscribe(mutations : ["updateDocument"])
+  onUpdateEmployee(filter: ModelSubscriptionEmployeeFilterInput): Employee @aws_subscribe(mutations : ["updateEmployee"])
+  onUpdateLeave(filter: ModelSubscriptionLeaveFilterInput): Leave @aws_subscribe(mutations : ["updateLeave"])
+  onUpdatePayroll(filter: ModelSubscriptionPayrollFilterInput): Payroll @aws_subscribe(mutations : ["updatePayroll"])
+  onUpdatePerformanceReview(filter: ModelSubscriptionPerformanceReviewFilterInput): PerformanceReview @aws_subscribe(mutations : ["updatePerformanceReview"])
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateAttendanceInput {
+  attendanceId: ID!
+  date: AWSDate!
+  empId: ID!
+  id: ID
+  status: String!
+}
+
+input CreateDocumentInput {
+  description: String
+  docId: ID!
+  empId: ID!
+  id: ID
+  title: String!
+  url: String!
+}
+
+input CreateEmployeeInput {
+  contact: String!
+  empId: ID!
+  id: ID
+  name: String!
+  position: String!
+}
+
+input CreateLeaveInput {
+  empId: ID!
+  endDate: AWSDateTime!
+  id: ID
+  leaveId: ID!
+  reason: String!
+  startDate: AWSDateTime!
+}
+
+input CreatePayrollInput {
+  empId: ID!
+  id: ID
+  month: Int!
+  payrollId: ID!
+  salary: Float!
+  year: Int!
+}
+
+input CreatePerformanceReviewInput {
+  comments: String
+  empId: ID!
+  id: ID
+  rating: Float!
+  reviewId: ID!
+  year: Int!
+}
+
+input DeleteAttendanceInput {
+  id: ID!
+}
+
+input DeleteDocumentInput {
+  id: ID!
+}
+
+input DeleteEmployeeInput {
+  id: ID!
+}
+
+input DeleteLeaveInput {
+  id: ID!
+}
+
+input DeletePayrollInput {
+  id: ID!
+}
+
+input DeletePerformanceReviewInput {
+  id: ID!
+}
+
+input ModelAttendanceConditionInput {
+  and: [ModelAttendanceConditionInput]
+  attendanceId: ModelIDInput
+  date: ModelStringInput
+  empId: ModelIDInput
+  not: ModelAttendanceConditionInput
+  or: [ModelAttendanceConditionInput]
+  status: ModelStringInput
+}
+
+input ModelAttendanceFilterInput {
+  and: [ModelAttendanceFilterInput]
+  attendanceId: ModelIDInput
+  date: ModelStringInput
+  empId: ModelIDInput
+  not: ModelAttendanceFilterInput
+  or: [ModelAttendanceFilterInput]
+  status: ModelStringInput
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelDocumentConditionInput {
+  and: [ModelDocumentConditionInput]
+  description: ModelStringInput
+  docId: ModelIDInput
+  empId: ModelIDInput
+  not: ModelDocumentConditionInput
+  or: [ModelDocumentConditionInput]
+  title: ModelStringInput
+  url: ModelStringInput
+}
+
+input ModelDocumentFilterInput {
+  and: [ModelDocumentFilterInput]
+  description: ModelStringInput
+  docId: ModelIDInput
+  empId: ModelIDInput
+  not: ModelDocumentFilterInput
+  or: [ModelDocumentFilterInput]
+  title: ModelStringInput
+  url: ModelStringInput
+}
+
+input ModelEmployeeConditionInput {
+  and: [ModelEmployeeConditionInput]
+  contact: ModelStringInput
+  empId: ModelIDInput
+  name: ModelStringInput
+  not: ModelEmployeeConditionInput
+  or: [ModelEmployeeConditionInput]
+  position: ModelStringInput
+}
+
+input ModelEmployeeFilterInput {
+  and: [ModelEmployeeFilterInput]
+  contact: ModelStringInput
+  empId: ModelIDInput
+  name: ModelStringInput
+  not: ModelEmployeeFilterInput
+  or: [ModelEmployeeFilterInput]
+  position: ModelStringInput
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelLeaveConditionInput {
+  and: [ModelLeaveConditionInput]
+  empId: ModelIDInput
+  endDate: ModelStringInput
+  leaveId: ModelIDInput
+  not: ModelLeaveConditionInput
+  or: [ModelLeaveConditionInput]
+  reason: ModelStringInput
+  startDate: ModelStringInput
+}
+
+input ModelLeaveFilterInput {
+  and: [ModelLeaveFilterInput]
+  empId: ModelIDInput
+  endDate: ModelStringInput
+  leaveId: ModelIDInput
+  not: ModelLeaveFilterInput
+  or: [ModelLeaveFilterInput]
+  reason: ModelStringInput
+  startDate: ModelStringInput
+}
+
+input ModelPayrollConditionInput {
+  and: [ModelPayrollConditionInput]
+  empId: ModelIDInput
+  month: ModelIntInput
+  not: ModelPayrollConditionInput
+  or: [ModelPayrollConditionInput]
+  payrollId: ModelIDInput
+  salary: ModelFloatInput
+  year: ModelIntInput
+}
+
+input ModelPayrollFilterInput {
+  and: [ModelPayrollFilterInput]
+  empId: ModelIDInput
+  month: ModelIntInput
+  not: ModelPayrollFilterInput
+  or: [ModelPayrollFilterInput]
+  payrollId: ModelIDInput
+  salary: ModelFloatInput
+  year: ModelIntInput
+}
+
+input ModelPerformanceReviewConditionInput {
+  and: [ModelPerformanceReviewConditionInput]
+  comments: ModelStringInput
+  empId: ModelIDInput
+  not: ModelPerformanceReviewConditionInput
+  or: [ModelPerformanceReviewConditionInput]
+  rating: ModelFloatInput
+  reviewId: ModelIDInput
+  year: ModelIntInput
+}
+
+input ModelPerformanceReviewFilterInput {
+  and: [ModelPerformanceReviewFilterInput]
+  comments: ModelStringInput
+  empId: ModelIDInput
+  not: ModelPerformanceReviewFilterInput
+  or: [ModelPerformanceReviewFilterInput]
+  rating: ModelFloatInput
+  reviewId: ModelIDInput
+  year: ModelIntInput
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionAttendanceFilterInput {
+  and: [ModelSubscriptionAttendanceFilterInput]
+  attendanceId: ModelSubscriptionIDInput
+  date: ModelSubscriptionStringInput
+  empId: ModelSubscriptionIDInput
+  or: [ModelSubscriptionAttendanceFilterInput]
+  status: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionBooleanInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelSubscriptionDocumentFilterInput {
+  and: [ModelSubscriptionDocumentFilterInput]
+  description: ModelSubscriptionStringInput
+  docId: ModelSubscriptionIDInput
+  empId: ModelSubscriptionIDInput
+  or: [ModelSubscriptionDocumentFilterInput]
+  title: ModelSubscriptionStringInput
+  url: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionEmployeeFilterInput {
+  and: [ModelSubscriptionEmployeeFilterInput]
+  contact: ModelSubscriptionStringInput
+  empId: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  or: [ModelSubscriptionEmployeeFilterInput]
+  position: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionFloatInput {
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  in: [Float]
+  le: Float
+  lt: Float
+  ne: Float
+  notIn: [Float]
+}
+
+input ModelSubscriptionIDInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  in: [ID]
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  notIn: [ID]
+}
+
+input ModelSubscriptionIntInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  in: [Int]
+  le: Int
+  lt: Int
+  ne: Int
+  notIn: [Int]
+}
+
+input ModelSubscriptionLeaveFilterInput {
+  and: [ModelSubscriptionLeaveFilterInput]
+  empId: ModelSubscriptionIDInput
+  endDate: ModelSubscriptionStringInput
+  leaveId: ModelSubscriptionIDInput
+  or: [ModelSubscriptionLeaveFilterInput]
+  reason: ModelSubscriptionStringInput
+  startDate: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionPayrollFilterInput {
+  and: [ModelSubscriptionPayrollFilterInput]
+  empId: ModelSubscriptionIDInput
+  month: ModelSubscriptionIntInput
+  or: [ModelSubscriptionPayrollFilterInput]
+  payrollId: ModelSubscriptionIDInput
+  salary: ModelSubscriptionFloatInput
+  year: ModelSubscriptionIntInput
+}
+
+input ModelSubscriptionPerformanceReviewFilterInput {
+  and: [ModelSubscriptionPerformanceReviewFilterInput]
+  comments: ModelSubscriptionStringInput
+  empId: ModelSubscriptionIDInput
+  or: [ModelSubscriptionPerformanceReviewFilterInput]
+  rating: ModelSubscriptionFloatInput
+  reviewId: ModelSubscriptionIDInput
+  year: ModelSubscriptionIntInput
+}
+
+input ModelSubscriptionStringInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  in: [String]
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  notIn: [String]
+}
+
+input UpdateAttendanceInput {
+  attendanceId: ID
+  date: AWSDate
+  empId: ID
+  id: ID!
+  status: String
+}
+
+input UpdateDocumentInput {
+  description: String
+  docId: ID
+  empId: ID
+  id: ID!
+  title: String
+  url: String
+}
+
+input UpdateEmployeeInput {
+  contact: String
+  empId: ID
+  id: ID!
+  name: String
+  position: String
+}
+
+input UpdateLeaveInput {
+  empId: ID
+  endDate: AWSDateTime
+  id: ID!
+  leaveId: ID
+  reason: String
+  startDate: AWSDateTime
+}
+
+input UpdatePayrollInput {
+  empId: ID
+  id: ID!
+  month: Int
+  payrollId: ID
+  salary: Float
+  year: Int
+}
+
+input UpdatePerformanceReviewInput {
+  comments: String
+  empId: ID
+  id: ID!
+  rating: Float
+  reviewId: ID
+  year: Int
+}

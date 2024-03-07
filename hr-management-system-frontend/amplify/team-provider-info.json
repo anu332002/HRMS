@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hrms-dev-f7e16-authRole",
+      "UnauthRoleArn": "arn:aws:iam::543536989902:role/amplify-hrms-dev-f7e16-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::543536989902:role/amplify-hrms-dev-f7e16-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-hrms-dev-f7e16-deployment",
+      "UnauthRoleName": "amplify-hrms-dev-f7e16-unauthRole",
+      "StackName": "amplify-hrms-dev-f7e16",
+      "StackId": "arn:aws:cloudformation:us-east-1:543536989902:stack/amplify-hrms-dev-f7e16/26f6e470-dc6b-11ee-9622-0e8461fc684f",
+      "AmplifyAppId": "dgvf370ppfy3k"
+    },
+    "categories": {
+      "auth": {
+        "hrms09816d39": {}
+      },
+      "api": {
+        "hrms": {}
+      }
+    }
+  }
+}
